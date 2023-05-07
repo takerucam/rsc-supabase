@@ -17,9 +17,8 @@ async function fetchBlog(blogId: string) {
     `${process.env.url}/rest/v1/blogs?id=eq.${blogId}&select=*`,
     {
       headers: new Headers({
-        apiKey: process.env.apiKey as string,
+        apikey: process.env.apiKey as string,
       }),
-      cache: 'no-store',
     }
   )
   const blogs: Blog[] = await res.json()
@@ -54,7 +53,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
 export async function generateStaticParams() {
   const res = await fetch(`${process.env.url}/rest/v1/blogs?select=*`, {
     headers: new Headers({
-      apiKey: process.env.apiKey as string,
+      apikey: process.env.apiKey as string,
     }),
   })
   const blogs: Blog[] = await res.json()
